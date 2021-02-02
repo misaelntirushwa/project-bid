@@ -22,12 +22,15 @@ pipeline {
             steps {
                 sh './mvnw package'
             }
-        }
 
-        post {
-            success {
-                junit '**/target/surefire-reports/TEST-*.xml'
-                archiveArtifacts 'target/*.jar'
+            post {
+                always {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                }
+                
+                success {
+                    archiveArtifacts 'target/*.jar'
+                }
             }
         }
     }
