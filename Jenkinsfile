@@ -1,7 +1,9 @@
 #!/usr/bin/env groovy
 
 pipeline {
-    agent any
+    agent {
+        dockerfile true
+    }
     triggers { pollSCM('* * * * *') }
     stages {
         // implicit checkout stage
