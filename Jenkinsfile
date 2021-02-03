@@ -30,6 +30,7 @@ pipeline {
                 
                 success {
                     archiveArtifacts 'target/*.jar'
+                    sh 'docker build -t ntmisa/project-bid:latest .'
                 }
             }
         }
