@@ -1,9 +1,7 @@
 #!/usr/bin/env groovy
 
 pipeline {
-    agent {
-        dockerfile true
-    }
+    agent any
     triggers { pollSCM('* * * * *') }
     stages {
         // implicit checkout stage
@@ -32,7 +30,6 @@ pipeline {
                 
                 success {
                     archiveArtifacts 'target/*.jar'
-                    sh 'sudo docker build -t ntmisa/project-bid:latest .'
                 }
             }
         }
